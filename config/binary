@@ -53,7 +53,7 @@ LB_BUILD_WITH_CHROOT="true"
 LB_DEBIAN_INSTALLER="live"
 
 # Set debian-installer suite
-LB_DEBIAN_INSTALLER_DISTRIBUTION="bookworm"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="sid"
 
 # Set debian-installer preseed filename/url
 LB_DEBIAN_INSTALLER_PRESEEDFILE=""
@@ -71,10 +71,10 @@ LB_HDD_SIZE="auto"
 LB_HDD_PARTITION_START=""
 
 # Set iso author
-LB_ISO_APPLICATION="Pancake"
+LB_ISO_APPLICATION="PancakeLinux"
 
 # Set iso preparer
-LB_ISO_PREPARER="Pancake"
+LB_ISO_PREPARER="Pancakse"
 
 # Set iso publisher
 LB_ISO_PUBLISHER="Pancakse"
