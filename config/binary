@@ -71,13 +71,13 @@ LB_HDD_SIZE="auto"
 LB_HDD_PARTITION_START=""
 
 # Set iso author
-LB_ISO_APPLICATION="B1ack"
+LB_ISO_APPLICATION="Pancake"
 
 # Set iso preparer
-LB_ISO_PREPARER="B1ack"
+LB_ISO_PREPARER="Pancake"
 
 # Set iso publisher
-LB_ISO_PUBLISHER="4epHblu"
+LB_ISO_PUBLISHER="Pancakse"
 
 # Set iso volume (max 32 chars)
 LB_ISO_VOLUME="PancakeLinux Installer - amd64"
