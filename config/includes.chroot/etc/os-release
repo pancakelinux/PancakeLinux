@@ -1,0 +1,9 @@
+PRETTY_NAME="PancakeLinux"
+NAME="PancakeLinux"
+VERSION="Rolling"
+VERSION_CODENAME=sid
+ID=pancakelinux
+ID_LIKE=debian
+HOME_URL="https://github.com/pancakelinux/PancakeLinux"
+SUPPORT_URL="https://github.com/pancakelinux/PancakeLinux/issues"
+BUG_REPORT_URL="https://github.com/pancakelinux/PancakeLinux/issues"
