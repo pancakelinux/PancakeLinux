@@ -19,19 +19,19 @@ LB_BOOTAPPEND_INSTALL=""
 LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live components memtest noapic noapm nodma nomce nosmp nosplash vga=788"
 
 # Set BIOS bootloader
-LB_BOOTLOADER_BIOS="syslinux"
+LB_BOOTLOADER_BIOS="grub-pc"
 
 # Set EFI bootloader
 LB_BOOTLOADER_EFI="grub-efi"
 
 # Set bootloaders
-LB_BOOTLOADERS=""
+LB_BOOTLOADERS="grub-pc grub-efi"
 
 # Set checksums
-LB_CHECKSUMS="sha256"
+LB_CHECKSUMS="sha256 md5"
 
 # Set compression
-LB_COMPRESSION="none"
+LB_COMPRESSION="xz"
 
 # Support dm-verity on rootfs
 LB_DM_VERITY=""
@@ -50,16 +50,16 @@ LB_ZSYNC="false"
 LB_BUILD_WITH_CHROOT="true"
 
 # Set debian-installer
-LB_DEBIAN_INSTALLER="none"
+LB_DEBIAN_INSTALLER="live"
 
 # Set debian-installer suite
-LB_DEBIAN_INSTALLER_DISTRIBUTION="sid"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="bookworm"
 
 # Set debian-installer preseed filename/url
 LB_DEBIAN_INSTALLER_PRESEEDFILE=""
 
 # Toggle use of GUI debian-installer
-LB_DEBIAN_INSTALLER_GUI="true"
+LB_DEBIAN_INSTALLER_GUI="false"
 
 # Set hdd label
 LB_HDD_LABEL="DEBIAN_LIVE"
@@ -71,16 +71,16 @@ LB_HDD_SIZE="auto"
 LB_HDD_PARTITION_START=""
 
 # Set iso author
-LB_ISO_APPLICATION="Debian Live"
+LB_ISO_APPLICATION="B1ack"
 
 # Set iso preparer
-LB_ISO_PREPARER="live-build @LB_VERSION@; https://salsa.debian.org/live-team/live-build"
+LB_ISO_PREPARER="B1ack"
 
 # Set iso publisher
-LB_ISO_PUBLISHER="Debian Live project; https://wiki.debian.org/DebianLive; debian-live@lists.debian.org"
+LB_ISO_PUBLISHER="4epHblu"
 
 # Set iso volume (max 32 chars)
-LB_ISO_VOLUME="Debian sid @ISOVOLUME_TS@"
+LB_ISO_VOLUME="PancakeLinux Installer - amd64"
 
 # Set jffs2 eraseblock size
 LB_JFFS2_ERASEBLOCK=""
@@ -89,7 +89,7 @@ LB_JFFS2_ERASEBLOCK=""
 LB_MEMTEST="none"
 
 # Set loadlin
-LB_LOADLIN="false"
+LB_LOADLIN="true"
 
 # Set win32-loader
 LB_WIN32_LOADER="false"
