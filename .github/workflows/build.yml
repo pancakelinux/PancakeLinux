@@ -62,11 +62,11 @@ jobs:
             --debian-installer-distribution sid \
             --distribution sid \
             --architecture amd64
-            
+
       - name: Clean any stale lock/state
-          run: |
-            rm -f .lock chroot.lock bootstrap.lock 2>/dev/null || true
-            lb clean --all || true
+        run: |
+          rm -f .lock chroot.lock bootstrap.lock 2>/dev/null || true
+          lb clean --all || true
 
       - name: Build ISO
         run: sudo lb build
