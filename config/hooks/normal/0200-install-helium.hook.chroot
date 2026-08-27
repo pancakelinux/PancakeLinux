@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+apt-get install -y curl gnupg ca-certificates
+
+curl -fsSL https://raw.githubusercontent.com/imputnet/helium-linux/main/pubkey.asc \
+  | gpg --dearmor -o /usr/share/keyrings/helium.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/helium.gpg] https://pkg.helium.computer/deb stable main" \
+  > /etc/apt/sources.list.d/helium.list
+
+apt-get update
+apt-get install -y helium-bin

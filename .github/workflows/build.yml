@@ -13,16 +13,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: debian:sid
     timeout-minutes: 90
 
     steps:
+      - name: Install prerequisites (git needed before checkout)
+        run: |
+          apt-get update
+          apt-get install -y git sudo
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Install live-build and dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
+          apt-get update
+          apt-get install -y \
             live-build \
             debootstrap \
             squashfs-tools \
@@ -88,4 +95,3 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.rename.outputs.iso_name }}
-          

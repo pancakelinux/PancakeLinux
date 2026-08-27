@@ -3,4 +3,6 @@ live-config
 live-config-systemd
 systemd-sysv
 fastfetch
-
+task-cinnamon-desktop
+lightdm
+lightdm-gtk-greeter
