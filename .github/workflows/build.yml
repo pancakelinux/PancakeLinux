@@ -13,63 +13,48 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: debian:sid
     timeout-minutes: 90
 
     steps:
-      - name: Install prerequisites (git needed before checkout)
-        run: |
-          apt-get update
-          apt-get install -y git sudo
-
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install live-build and dependencies
+      - name: Build ISO inside privileged Debian sid container
         run: |
-          apt-get update
-          apt-get install -y \
-            live-build \
-            debootstrap \
-            squashfs-tools \
-            xorriso \
-            isolinux \
-            syslinux-utils \
-            grub-pc-bin \
-            grub-efi-amd64-bin \
-            mtools \
-            dosfstools
+          docker run --rm --privileged \
+            -v "${{ github.workspace }}:/build" \
+            -w /build \
+            debian:sid \
+            bash -c '
+              set -e
+              apt-get update
+              apt-get install -y \
+                live-build debootstrap squashfs-tools xorriso \
+                isolinux syslinux-utils grub-pc-bin grub-efi-amd64-bin \
+                mtools dosfstools
 
-      - name: Run lb config
-        run: |
-          lb config \
-            --apt apt \
-            --apt-options "--yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold" \
-            --bootloaders "grub-pc grub-efi" \
-            --apt-source-archives true \
-            --firmware-binary true \
-            --firmware-chroot true \
-            --debian-installer live \
-            --debian-installer-gui false \
-            --iso-application "PancakeLinux" \
-            --iso-preparer "Pancakse" \
-            --iso-publisher "Pancakse" \
-            --iso-volume "PancakeLinux Installer - amd64" \
-            --archive-areas "main contrib non-free non-free-firmware" \
-            --binary-image iso-hybrid \
-            --compression xz \
-            --debian-installer-distribution sid \
-            --distribution sid \
-            --architecture amd64
+              lb config \
+                --apt apt \
+                --apt-options "--yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold" \
+                --bootloaders "grub-pc grub-efi" \
+                --apt-source-archives true \
+                --firmware-binary true \
+                --firmware-chroot true \
+                --debian-installer live \
+                --debian-installer-gui false \
+                --iso-application "PancakeLinux" \
+                --iso-preparer "Pancakse" \
+                --iso-publisher "Pancakse" \
+                --iso-volume "PancakeLinux Installer - amd64" \
+                --archive-areas "main contrib non-free non-free-firmware" \
+                --binary-image iso-hybrid \
+                --compression xz \
+                --debian-installer-distribution sid \
+                --distribution sid \
+                --architecture amd64
 
-      - name: Clean any stale lock/state
-        run: |
-          rm -f .lock chroot.lock bootstrap.lock 2>/dev/null || true
-          lb clean --all || true
-
-      - name: Build ISO
-        run: sudo lb build
+              lb build
+            '
 
       - name: Rename ISO with date/commit
         id: rename
@@ -100,3 +85,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.rename.outputs.iso_name }}
+          
